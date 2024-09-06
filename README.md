@@ -1,30 +1,39 @@
 ## THIS IS  AN OUTLINE OF THE STEPS BY STEPS WORKFKOW OF THE PROJECT FROM START TO FINISH.
 NLP PROJECT PIPELINE:
+
 DATA ACQUISITION
+
     -Available  data(cvs, txt,pdf)
     -other data(Database;Internet,API data, scraped data,)
     -No data(create your own data  ; use LLM to make data; issue out surveys then perform dat
     a augmentation  such as BIagram flip, BAck Translate, Add additonal  noise, replace with synonymns incase of less data)
 
 TEXT PREPARATION
+
     GENERAL /BASIC PREPROCESSING
+
          Tokenization
          stop words removal
          stemming/ lemmatization
          remove punctuation
          convert to lower case
+
     CONTEXT BASED / ADVANCED PREPROCESSINg
+
         POS tagging
         Parsing(parsing tree)
         Coreference reduction
 
 FEATURE ENGINEERING
+
 MODEL TRAINING
+
 MDOEL EVALUATION
 
 ## PROJECT FOLDERS AND FILES
 
 PROJECT SETUP AND UTILITY MODULES (Flow chart of how we arrange the folders)  :
+
     (first)create the Project template.py that will  provide code for creating the folders , subfolders and files  according to the flowchart below instead of creating each manually
        
     
@@ -88,19 +97,23 @@ Method: get_data_from_source()
         Fetch data from APIs, databases, or remote servers.
         Handle authentication, error handling, and retries for robustness.
         Logging: Log every data retrieval step.
+
 Method: read_csv(file_path)
+
         Load data from CSV or other file formats.
         Error Handling: Handle cases where the file doesn’t exist or is corrupted and provide useful error messages.
         Logging: Log the path of the file and the shape of the dataset.
 
 
 Method: ingest_data()
+
          A final method that calls the other two methods to either fetch the data from the source or read from local files, based on user input or configuration.
 
 ## 2. Data Transformation Module
 Class: DataTransformation
 
 Method: drop_columns(columns_to_drop)
+
         Drop unnecessary columns that are not useful for the classification model.
         Perform checks to avoid dropping critical columns accidentally.
         Logging: Log the list of columns dropped.
@@ -153,6 +166,7 @@ Method: tokenize(text_column)
                                             raise CustomExcecptionError(e, "Error in tokenization.")
 
 Method: text_to_sequences(tokenized_texts)
+
     Convert tokenized text into sequences of integers using a vocabulary.
     Pad the sequences to ensure uniform length.
     Log the shape of the resulting sequences.
@@ -167,6 +181,7 @@ Method: text_to_sequences(tokenized_texts)
 
 
 Method: word_embedding(sequences)
+
         Apply pre-trained word embeddings like Word2Vec, GloVe, or train embeddings during model training.
         Ensure that the embeddings are aligned with the tokenization.
         Log whether a pre-trained embedding is used or trained from scratch.
@@ -260,6 +275,7 @@ Method: evaluate_model(X_test, y_test)
 
         Evaluate the trained models on test data.
         Use metrics like accuracy, precision, recall, F1-score, and confusion matrix.
+        
 Method: plot_metrics()
 
         Plot performance metrics such as ROC curve, precision-recall curve, and confusion matrix for visual interpretation.
