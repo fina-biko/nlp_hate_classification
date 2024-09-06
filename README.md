@@ -252,9 +252,11 @@ Method: train_model(X_train, y_train)
 Class: RandomForestModel
 
 Method: train_model(X_train, y_train)
+
         Train a random forest classifier using scikit-learn.
         Tune hyperparameters using techniques like GridSearchCV.
         Log the best parameters and model metrics.
+        
                                             def train_model(self, X_train, y_train):
                                         try:
                                             model = RandomForestClassifier()
