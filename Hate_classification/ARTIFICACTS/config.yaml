@@ -1,0 +1,2 @@
+Data_ingestion:
+      source_url: https://github.com/fina-biko/nlp_hate_classification/blob/main/Hate_classification/labeled_data.csv.zip

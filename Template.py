@@ -7,6 +7,7 @@ ROOT_FOLDER="Hate_classification"
 list_of_files=[
     f"{ROOT_FOLDER}/__init__.py",
     f"{ROOT_FOLDER}/ARTIFACTS/",
+    f"{ROOT_FOLDER}/ARTIFACTS/config.yaml",
     f"{ROOT_FOLDER}/COMPONENTS/__init__.py",
     f"{ROOT_FOLDER}/COMPONENTS/data_ingestion.py",
     f"{ROOT_FOLDER}/COMPONENTS/data_processing.py",
@@ -23,6 +24,7 @@ list_of_files=[
     f"{ROOT_FOLDER}/LOGGERS/__init__.py",
     f"{ROOT_FOLDER}/LOGGERS/logging.py",
     f"{ROOT_FOLDER}/PIPELINE/__init__.py",
+    f"{ROOT_FOLDER}/PIPELINE/ingestion_pipelline_steps.py",
     f"{ROOT_FOLDER}/UTILS/__init__.py",
     f"{ROOT_FOLDER}/UTILS/utility.py",
     f"{ROOT_FOLDER}/ML/__init__.py",
