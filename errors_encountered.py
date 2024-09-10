@@ -78,3 +78,23 @@ specifying the error is of type exception
 
 
 '''
+
+## data processing methods 
+'''
+When apply() is used on a DataFrame:
+It applies the function to each column (the default, axis=0).
+If you want to apply it to each row instead, you would specify axis=1.
+'''
+
+## data preprprocessing methods
+'''def drop_punctuations(self)->pd.DataFrame:
+        self.data= self.data.apply(lambda col: col.str.str.replace(r'[^\w\s]', '', regex=True))
+        self.data= self.data.apply(lambda col: col.str.replace(r'http\S+|www\S+|https\S+', '', regex=True))
+        self.data= self.data.apply(lambda col: col.str.replace(r'\d+', '', regex=True))
+        self.data= self.data.apply(lambda col: col.str.replace(r'\s+', ' ', regex=True))
+        return self.data
+     
+in the code abbove, if I call the function will it apply the steps by default according to how they are arranged?yes,Yes, Python executes the code in functions line by
+ line, in the order in which they are written, 
+
+'''
