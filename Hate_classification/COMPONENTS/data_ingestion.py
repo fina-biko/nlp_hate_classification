@@ -4,6 +4,8 @@ import pandas as pd
 from Hate_classification.LOGGERS.logging import initialize_logging
 from Hate_classification.EXCEPTIONS.exceptions import CustomExcecptionError
 from pathlib import Path
+
+
 class DataIngestionStrategy(ABC):
     @abstractmethod
     def ingest_data(self, path:str):
@@ -27,10 +29,8 @@ class DataIngestion(DataIngestionStrategy):
             CustomExcecptionError(e,'error reading CSV from  the path specified { self.path}' )
 
   
-'''
-if __name__ == "__main__":
-    DataIngestion.ingest_data(r'C:\Users\User\Desktop\labeled_data.csv')
- '''
+
+
 
 
 

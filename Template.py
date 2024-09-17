@@ -13,6 +13,8 @@ list_of_files=[
     f"{ROOT_FOLDER}/COMPONENTS/data_processing.py",
     f"{ROOT_FOLDER}/COMPONENTS/model_training.py",
     f"{ROOT_FOLDER}/COMPONENTS/model_evaluation.py",
+    f"{ROOT_FOLDER}/ATTRIBUTES/__init__.py",
+    f"{ROOT_FOLDER}/ATTRIBUTES/attributes_entity.py",
     f"{ROOT_FOLDER}/COMPONENTS/model_inference.py",
     f"{ROOT_FOLDER}/COMPONENTS/data_visualization.py",
     f"{ROOT_FOLDER}/CONFIGURATION/__init__.py",
