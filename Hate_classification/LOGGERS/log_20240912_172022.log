@@ -1,0 +1,54 @@
+ingestion_pipeline_steps.py----ingestion_pipeline_steps---2024-09-12 20:20:25,533---INFO---data_ingestion_pipeline---Hate_classification.LOGGERS.logging---Initializing  data ingestion pipeline steps
+data_ingestion.py----data_ingestion---2024-09-12 20:20:25,533---INFO---ingest_data---Hate_classification.LOGGERS.logging---initialized Reading CSV from { self.path} 
+data_ingestion.py----data_ingestion---2024-09-12 20:20:25,533---INFO---ingest_data---Hate_classification.LOGGERS.logging---initialized Reading CSV from { self.path} 
+ingestion_pipeline_steps.py----ingestion_pipeline_steps---2024-09-12 20:20:25,589---INFO---data_ingestion_pipeline---Hate_classification.LOGGERS.logging---successfully finished data ingestion pipeline steps
+ingestion_pipeline_steps.py----ingestion_pipeline_steps---2024-09-12 20:20:25,589---INFO---data_ingestion_pipeline---Hate_classification.LOGGERS.logging---successfully finished data ingestion pipeline steps
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,913---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Initializing data processing pipeline 
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,913---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Initializing data processing pipeline 
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,913---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Initializing data processing pipeline 
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---initializing the dropping of the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---initializing the dropping of the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---initializing the dropping of the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---initializing the dropping of the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---Columns available in DataFrame: ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language', 'neither', 'class', 'tweet']
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---Columns available in DataFrame: ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language', 'neither', 'class', 'tweet']
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---Columns available in DataFrame: ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language', 'neither', 'class', 'tweet']
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---Columns available in DataFrame: ['Unnamed: 0', 'count', 'hate_speech', 'offensive_language', 'neither', 'class', 'tweet']
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---successfully dropped the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---successfully dropped the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---successfully dropped the columns
+data_processing.py----data_processing---2024-09-12 20:20:25,913---INFO---preprocess_data---Hate_classification.LOGGERS.logging---successfully dropped the columns
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,919---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---dropped columns successfully
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,919---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---dropped columns successfully
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,919---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---dropped columns successfully
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:20:25,919---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---dropped columns successfully
+data_processing.py----data_processing---2024-09-12 20:20:25,940---INFO---lower_case---Hate_classification.LOGGERS.logging---Successfully applied the lowercase transformation to the column: tweet
+data_processing.py----data_processing---2024-09-12 20:20:25,940---INFO---lower_case---Hate_classification.LOGGERS.logging---Successfully applied the lowercase transformation to the column: tweet
+data_processing.py----data_processing---2024-09-12 20:20:25,940---INFO---lower_case---Hate_classification.LOGGERS.logging---Successfully applied the lowercase transformation to the column: tweet
+data_processing.py----data_processing---2024-09-12 20:20:25,940---INFO---lower_case---Hate_classification.LOGGERS.logging---Successfully applied the lowercase transformation to the column: tweet
+data_processing.py----data_processing---2024-09-12 20:20:25,940---INFO---lower_case---Hate_classification.LOGGERS.logging---Successfully applied the lowercase transformation to the column: tweet
+data_processing.py----data_processing---2024-09-12 20:20:25,945---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---started the drop_punctuations
+data_processing.py----data_processing---2024-09-12 20:20:25,945---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---started the drop_punctuations
+data_processing.py----data_processing---2024-09-12 20:20:25,945---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---started the drop_punctuations
+data_processing.py----data_processing---2024-09-12 20:20:25,945---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---started the drop_punctuations
+data_processing.py----data_processing---2024-09-12 20:20:25,945---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---started the drop_punctuations
+data_processing.py----data_processing---2024-09-12 20:20:26,253---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---Successfully dropped punctuations and URLs
+data_processing.py----data_processing---2024-09-12 20:20:26,253---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---Successfully dropped punctuations and URLs
+data_processing.py----data_processing---2024-09-12 20:20:26,253---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---Successfully dropped punctuations and URLs
+data_processing.py----data_processing---2024-09-12 20:20:26,253---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---Successfully dropped punctuations and URLs
+data_processing.py----data_processing---2024-09-12 20:20:26,253---INFO---drop_punctuations---Hate_classification.LOGGERS.logging---Successfully dropped punctuations and URLs
+data_processing.py----data_processing---2024-09-12 20:20:26,258---INFO---drop_stopwords---Hate_classification.LOGGERS.logging---drop_stopwords has been initialized
+data_processing.py----data_processing---2024-09-12 20:20:26,258---INFO---drop_stopwords---Hate_classification.LOGGERS.logging---drop_stopwords has been initialized
+data_processing.py----data_processing---2024-09-12 20:20:26,258---INFO---drop_stopwords---Hate_classification.LOGGERS.logging---drop_stopwords has been initialized
+data_processing.py----data_processing---2024-09-12 20:20:26,258---INFO---drop_stopwords---Hate_classification.LOGGERS.logging---drop_stopwords has been initialized
+data_processing.py----data_processing---2024-09-12 20:20:26,258---INFO---drop_stopwords---Hate_classification.LOGGERS.logging---drop_stopwords has been initialized
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Successfully finished the normalization
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Successfully finished the normalization
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Successfully finished the normalization
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Successfully finished the normalization
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---Successfully finished the normalization
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---successfully saved the data into the path
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---successfully saved the data into the path
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---successfully saved the data into the path
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---successfully saved the data into the path
+data_processing_pipeline.py----data_processing_pipeline---2024-09-12 20:21:07,689---INFO---data_processing_pipeline---Hate_classification.LOGGERS.logging---successfully saved the data into the path
