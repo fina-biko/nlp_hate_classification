@@ -1,0 +1,5 @@
+ingestion_pipeline_steps.py----ingestion_pipeline_steps---2024-09-18 04:53:55,467---INFO---data_ingestion_pipeline---Hate_classification.LOGGERS.logging---Initializing  data ingestion pipeline steps
+data_ingestion.py----data_ingestion---2024-09-18 04:53:55,468---INFO---ingest_data---Hate_classification.LOGGERS.logging---initialized Reading CSV from { self.path} 
+data_ingestion.py----data_ingestion---2024-09-18 04:53:55,468---INFO---ingest_data---Hate_classification.LOGGERS.logging---initialized Reading CSV from { self.path} 
+ingestion_pipeline_steps.py----ingestion_pipeline_steps---2024-09-18 04:53:55,843---INFO---data_ingestion_pipeline---Hate_classification.LOGGERS.logging---successfully finished data ingestion pipeline steps
+ingestion_pipeline_steps.py----ingestion_pipeline_steps---2024-09-18 04:53:55,843---INFO---data_ingestion_pipeline---Hate_classification.LOGGERS.logging---successfully finished data ingestion pipeline steps

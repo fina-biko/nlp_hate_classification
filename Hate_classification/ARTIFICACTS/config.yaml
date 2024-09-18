@@ -1,5 +1,0 @@
-Data_ingestion:
-      source_url: https://github.com/fina-biko/nlp_hate_classification/blob/main/Hate_classification/labeled_data.csv.zip
-
-Data_processing:
-      cols_to_drop: ["Unnamed: 0",'count','hate_speech','offensive_language','neither']
