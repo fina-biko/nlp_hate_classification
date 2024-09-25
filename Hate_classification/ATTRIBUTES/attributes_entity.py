@@ -17,4 +17,9 @@ class NormalizeDataAttributes:
    
 
     # You can remove the logging from here, as it should be handled in methods
-
+@dataclass
+class FeatureEngineerringAttributes:
+    data:pd.DataFrame
+    x_col: str
+    num_words: int
+    max_length: int

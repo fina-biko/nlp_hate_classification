@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from Hate_classification.EXCEPTIONS.exceptions import  CustomExcecptionError
 from Hate_classification.LOGGERS.logging import initialize_logging
 from Hate_classification.ATTRIBUTES.attributes_entity import NormalizeDataAttributes
+from Hate_classification.ATTRIBUTES.attributes_entity import FeatureEngineerringAttributes
 import pandas as pd
 import numpy as np
 import nltk
@@ -9,6 +10,10 @@ from nltk.corpus import stopwords
 import os
 from nltk.tokenize import word_tokenize
 nltk.download('punkt')  # Download necessary resources
+
+#tokens to integers
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 
@@ -86,7 +91,7 @@ class NormalizeData(cleanData) :
             self.lower_case()
             self.drop_punctuations()
             self.drop_stopwords()
-            self.store_preprocessed_data()
+            return self.store_preprocessed_data()  # Return the result from the last method
 
 
         except Exception as e:
@@ -183,15 +188,17 @@ class NormalizeData(cleanData) :
 #store the data with removed puynctuations and dropped cols
     def store_preprocessed_data(self):
         # Get the current working directory
-        current_dir = os.getcwd()
+        #current_dir = os.getcwd()
+        #curr=yaml_file = os.path.join('Hate_classification', 'ARTIFACTS', 'config.yaml')
         
         # Define the file path to store the CSV file
-        file_path = os.path.join(current_dir, 'clean_self.config.data.csv')
+        file_path = os.path.join('Hate_classification', 'ARTIFACTS', 'processesed_data.csv')
         
         # Save the preprocessed self.config.dataFrame to a CSV file
         try:
             self.config.data.to_csv(file_path, index=False)
             print(f"Preprocessed self.config.data successfully saved to {file_path}")
+            return self.config.data
         except Exception as e:
             print(f"An error occurred while saving the file: {e}")
             self.logger.error(CustomExcecptionError(e,'could not save the file'))
@@ -208,7 +215,7 @@ class Tokenization(FeatureEngineering ):
 
     def preprocess_data(self):
         self.tokenize_into_words()
-        self.store_preprocessed_data()
+        return self.store_preprocessed_data()  # Return the result from the last method
     
 
 
@@ -234,7 +241,7 @@ class Tokenization(FeatureEngineering ):
             lambda x: tokens(x) if self.config.data[self.config.x_col].dtype == 'object' else x
         )
         print('----------------------The final tokenized data------------------------')
-        print(self.config.data.head())
+       
         return self.config.data
 
        else:
@@ -244,15 +251,20 @@ class Tokenization(FeatureEngineering ):
 #python -m Hate_classification.loggerGERS.loggerging
     def store_preprocessed_data(self):
         # Get the current working directory
-        current_dir = os.getcwd()
+        #current_dir = os.getcwd()
         
         # Define the file path to store the CSV file
-        file_path = os.path.join(current_dir, 'clean_self.config.data.csv')
+        # Define the file path to store the CSV file
+        file_path = os.path.join('Hate_classification', 'ARTIFACTS', 'Tokeninized_data.csv')
+        #file_path = os.path.join(current_dir, 'clean_self.config.data.csv')
         
         # Save the preprocessed self.config.dataFrame to a CSV file
         try:
+            print(type(self.config.data))
             self.config.data.to_csv(file_path, index=False)
             print(f"Tokenized {self.config.data} successfully saved to {file_path}")
+            return self.config.data
+        
         except Exception as e:
             print(f"An error occurred while saving the file: {e}")
             self.logging.error(CustomExcecptionError(e,'could not save the file'))
@@ -264,14 +276,97 @@ class Tokenization(FeatureEngineering ):
         pass
 
        
+
+
+
+
+       
 class FeatureEngineering(ABC ):
-    
+    '''this class  focuses on the  conversion of the tokens to their corresponding integers'''
         
     @abstractmethod
-    def preprocess_data(self, ):
+    def preprocess_data(self):
         pass
 
+class TokensToSequence(FeatureEngineering):
+    def __init__(self,config:FeatureEngineerringAttributes):
+        self.config=config
+        self.logger=initialize_logging('info')
 
+    def preprocess_data(self):
+      try:
+        self.logger.info('starting the map tokens to ids')
+        self.map_tokens_to_ids()
+        self.logger.info('starting the padding')
+        self.perform_padding()
+        self.logger.info('starting the map saving')
+        return self.save_sequence_to_file()
+      except Exception as e:
+          print(CustomExcecptionError(e))
+
+
+    def map_tokens_to_ids(self):
+
+        if isinstance(self.config.data, pd.DataFrame):
+            try:
+                self.logger.info('Starting the tokens to sequence conversion')
+                col=self.config.x_col
+                tokenizer=Tokenizer(self.config.num_words)
+                tokenizer.fit_on_texts(self.config.data[self.config.x_col])
+                self.config.data[col] = tokenizer.texts_to_sequences(self.config.data[col])
+                self.logger.info('Succesfuly completed the text to sequence')
+                return self.config.data
+               
+            except Exception as e:
+                self.logger.error(CustomExcecptionError(e, 'could not map tokens to ids'))
+                print(CustomExcecptionError(e, 'could not map tokens to ids'))
+        else:
+            print(type(self.config.data))  # To check whether it's still a DataFrame at each step
+
+            print('the data  to perform mapping to ids  is not a dataframe')
+
+    def perform_padding(self):
+        if isinstance(self.config.data,pd.DataFrame):
+            try:
+                self.logger.info('Starting the padding process')
+                sequences=self.config.data[self.config.x_col].tolist()# Convert col to a list of lists
+                  
+                padded_sequence = pad_sequences(sequences, self.config.max_length) 
+                # Update the DataFrame column with the padded sequences
+                self.config.data[self.config.x_col] = list(padded_sequence)  # Convert back to a list for assignment
+                
+                self.logger.info('Successfuly  finished the padding process')
+                return self.config.data
+
+            except Exception as e:
+                self.logger.error(CustomExcecptionError(e,'failed to pad the sequence '))
+                print(CustomExcecptionError(e,'failed to pad the sequence'))
+        else:
+            print(type(self.config.data))  # To check whether it's still a DataFrame at each step
+
+            print('the data  to perfrom padding on is not a dataframe')
+            
+
+    def save_sequence_to_file(self):
+        # Get the current working directory
+        #current_dir = os.getcwd()
+        
+        # Define the file path to store the CSV file
+        try:
+         self.logger.info('starting the saving to filr process')
+         # Define the file path to store the CSV file
+         file_path = os.path.join('Hate_classification', 'ARTIFACTS', 'Vectorized_data.csv')
+         #file_path = os.path.join(current_dir, 'text_to_sequence.csv')
+        
+         self.config.data.to_csv(file_path,index=False)
+         self.logger.info('sucessfully savede the token to sequence CSV file to {self.file_path}')
+         return self.config.data
+        except Exception as e:
+            print(CustomExcecptionError(e))
+
+                
+        
+        
 
 
    
