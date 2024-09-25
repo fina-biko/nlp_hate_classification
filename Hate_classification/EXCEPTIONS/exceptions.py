@@ -5,7 +5,7 @@ def error_details(error: Exception) -> str:
     error_type, error_value, error_traceback = sys.exc_info()
     file_name = error_traceback.tb_frame.f_code.co_filename
     line_number = error_traceback.tb_lineno
-    return f"Error: {error_value} has occurred in module: {error_type.__name__}, line: {line_number}, file: {file_name}"
+    return f"Error: {error_value},{error_type.__name__} ,line: {line_number},has occurred in module:  file: {file_name}"
 
 class CustomExcecptionError(Exception):
     def __init__(self, error: Exception, message: str = None):

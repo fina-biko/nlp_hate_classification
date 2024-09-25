@@ -1,16 +1,16 @@
 from Hate_classification.COMPONENTS.data_processing import DropColumns
-from Hate_classification.COMPONENTS.data_processing import NormalizeData,Tokenization
+from Hate_classification.COMPONENTS.data_processing import NormalizeData,Tokenization,TokensToSequence
 import pandas as pd
 from Hate_classification.LOGGERS.logging import initialize_logging
 from Hate_classification.EXCEPTIONS.exceptions import CustomExcecptionError
-from Hate_classification.ATTRIBUTES.attributes_entity import NormalizeDataAttributes
+from Hate_classification.ATTRIBUTES.attributes_entity import NormalizeDataAttributes,FeatureEngineerringAttributes
 import os
 import pandas as pd
 import yaml
 
 
 from Hate_classification.PIPELINE.ingestion_pipeline_steps import data_ingestion_pipeline
-from Hate_classification.CONSTANTS import reading_yaml_file
+from Hate_classification.COMMON_METHODS import reading_yaml_file
 
 
 def data_processing_pipeline(data:pd.DataFrame) :
@@ -26,9 +26,10 @@ def data_processing_pipeline(data:pd.DataFrame) :
     log.info("Config loaded successfully")
     
     # Populate NormalizeDataAttributes dataclass  with values from the config
-    config_attributes = NormalizeDataAttributes(
+    config_attributes_processing = NormalizeDataAttributes(
         data=data,
         x_col=config['Data_processing']['x_col'],
+        
         #stopwords=set(config['Data_processing']['stopwords']),
         cols_to_drop=config['Data_processing']['cols_to_drop']
     )
@@ -37,7 +38,7 @@ def data_processing_pipeline(data:pd.DataFrame) :
        
         log.info("Initializing data processing pipeline ")
         try:
-            data=DropColumns(config_attributes).preprocess_data()#The class accesses col_to_drop specifically, and not other attributes like x_col or stopwords, because in its preprocess_data method, it references only config.col_to_drop.
+            data=DropColumns(config_attributes_processing).preprocess_data()#The class accesses col_to_drop specifically, and not other attributes like x_col or stopwords, because in its preprocess_data method, it references only config.col_to_drop.
             log.info('dropped columns successfully')
         except Exception as e:
             log.error(CustomExcecptionError(e,'error occurred while dropping columns'))
@@ -45,7 +46,7 @@ def data_processing_pipeline(data:pd.DataFrame) :
 
 #normalize column 
         try:
-            data=NormalizeData(config_attributes).preprocess_data()
+            data=NormalizeData(config_attributes_processing).preprocess_data()
             log.info('Successfully finished the normalization')
             log.info('successfully saved the data into the path')
         except Exception as e:
@@ -53,7 +54,7 @@ def data_processing_pipeline(data:pd.DataFrame) :
             print(CustomExcecptionError(e,'error written from pipeline step'))
 #tokenize columns    
         try:
-            data=Tokenization(config_attributes).preprocess_data()
+            data=Tokenization(config_attributes_processing).preprocess_data()
             log.info('Successfully finished the tokenization')
             print('Successfully finished the tokenization')
         except Exception as e:
@@ -64,6 +65,35 @@ def data_processing_pipeline(data:pd.DataFrame) :
     except Exception as e:
         log.error(CustomExcecptionError(e,'Error occurred while processing data') )
         print(CustomExcecptionError(e,'Error occurred while processing data: '))
+
+
+
+def feature_engineering_pipeline(data:pd.DataFrame):
+    log=initialize_logging('info')
+    config=reading_yaml_file()
+    try:
+        config_attributes_processing=FeatureEngineerringAttributes(
+            data=data,
+            x_col=config['Feature_engineering']['x_col'],
+            max_length=config['Feature_engineering']['max_length'],
+            num_words=config['Feature_engineering']['num_words']
+        )
+    except Exception as e:
+        print(CustomExcecptionError(e))
+    
+    #tokens to sequence
+    try:
+        log.info('starting the feature engineering pipeline')
+        data=TokensToSequence(config=config_attributes_processing).preprocess_data()
+        print('successfully finished feature engineering')
+        log.info('successfully finished feature engineering')
+        
+        return data
+    except Exception as e:
+        log.error(CustomExcecptionError(e))
+        print(CustomExcecptionError(e))
+        
+
     
 if __name__ == "__main__":
     
@@ -72,13 +102,22 @@ if __name__ == "__main__":
         print(df.head())
      except Exception as e:
        print(CustomExcecptionError(e,'Error occurred'))
+
+
      try:
-        data=data_processing_pipeline(data=df)
-        
+        preprocessed_data=data_processing_pipeline(data=df)
      except Exception as e:
          print(CustomExcecptionError(e,'Error occurred'))
+
+
+
+     try:
+      data=feature_engineering_pipeline(data=preprocessed_data)
+     except Exception as e:
+         print(CustomExcecptionError(e))
+
          
     
     
-    
+    #python -m Hate_classification.PIPELINE.data_processing_pipeline
 
