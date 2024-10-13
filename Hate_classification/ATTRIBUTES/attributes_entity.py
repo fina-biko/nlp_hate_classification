@@ -23,3 +23,6 @@ class FeatureEngineerringAttributes:
     x_col: str
     num_words: int
     max_length: int
+    input_dim:int
+    batch_size:int
+    output_dim: int

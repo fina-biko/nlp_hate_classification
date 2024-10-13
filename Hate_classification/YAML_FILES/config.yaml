@@ -9,6 +9,9 @@ Feature_engineering:
       x_col: "tweet"
       num_words: 1000
       max_length: 50
+      input_dim: "none"
+      batch_size: 50
+      output_dim: 2
 
 Model_training:
       model: LogisticRegression
