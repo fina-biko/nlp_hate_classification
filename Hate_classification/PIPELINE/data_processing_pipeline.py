@@ -1,5 +1,7 @@
+
+
 from Hate_classification.COMPONENTS.data_processing import DropColumns
-from Hate_classification.COMPONENTS.data_processing import NormalizeData,Tokenization,TokensToSequence
+from Hate_classification.COMPONENTS.data_processing import NormalizeData
 import pandas as pd
 from Hate_classification.LOGGERS.logging import initialize_logging
 from Hate_classification.EXCEPTIONS.exceptions import CustomExcecptionError
@@ -33,7 +35,7 @@ def data_processing_pipeline(data:pd.DataFrame) :
         #stopwords=set(config['Data_processing']['stopwords']),
         cols_to_drop=config['Data_processing']['cols_to_drop']
     )
-    #drop columns
+    #drop columns method
     try:
        
         log.info("Initializing data processing pipeline ")
@@ -44,7 +46,7 @@ def data_processing_pipeline(data:pd.DataFrame) :
             log.error(CustomExcecptionError(e,'error occurred while dropping columns'))
             print(CustomExcecptionError(e,'error occurred while dropping columns'))
 
-#normalize column 
+#normalize column  methods
         try:
             data=NormalizeData(config_attributes_processing).preprocess_data()
             log.info('Successfully finished the normalization')
@@ -52,14 +54,8 @@ def data_processing_pipeline(data:pd.DataFrame) :
         except Exception as e:
             log.error( CustomExcecptionError(e,'error written from pipeline step'))
             print(CustomExcecptionError(e,'error written from pipeline step'))
-#tokenize columns    
-        try:
-            data=Tokenization(config_attributes_processing).preprocess_data()
-            log.info('Successfully finished the tokenization')
-            print('Successfully finished the tokenization')
-        except Exception as e:
-            log.error(CustomExcecptionError(e,'error occurred while tokenization'))
-            print(CustomExcecptionError(e,'error occurred while tokenization'))
+#tokenize columns   methods  
+        
         
         return data 
     except Exception as e:
@@ -67,57 +63,4 @@ def data_processing_pipeline(data:pd.DataFrame) :
         print(CustomExcecptionError(e,'Error occurred while processing data: '))
 
 
-
-def feature_engineering_pipeline(data:pd.DataFrame):
-    log=initialize_logging('info')
-    config=reading_yaml_file()
-    try:
-        config_attributes_processing=FeatureEngineerringAttributes(
-            data=data,
-            x_col=config['Feature_engineering']['x_col'],
-            max_length=config['Feature_engineering']['max_length'],
-            num_words=config['Feature_engineering']['num_words']
-        )
-    except Exception as e:
-        print(CustomExcecptionError(e))
-    
-    #tokens to sequence
-    try:
-        log.info('starting the feature engineering pipeline')
-        data=TokensToSequence(config=config_attributes_processing).preprocess_data()
-        print('successfully finished feature engineering')
-        log.info('successfully finished feature engineering')
-        
-        return data
-    except Exception as e:
-        log.error(CustomExcecptionError(e))
-        print(CustomExcecptionError(e))
-        
-
-    
-if __name__ == "__main__":
-    
-     try:
-        df=data_ingestion_pipeline(r'C:\Users\User\Desktop\labeled_data.csv')
-        print(df.head())
-     except Exception as e:
-       print(CustomExcecptionError(e,'Error occurred'))
-
-
-     try:
-        preprocessed_data=data_processing_pipeline(data=df)
-     except Exception as e:
-         print(CustomExcecptionError(e,'Error occurred'))
-
-
-
-     try:
-      data=feature_engineering_pipeline(data=preprocessed_data)
-     except Exception as e:
-         print(CustomExcecptionError(e))
-
-         
-    
-    
-    #python -m Hate_classification.PIPELINE.data_processing_pipeline
 
