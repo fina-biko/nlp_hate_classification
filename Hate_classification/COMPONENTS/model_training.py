@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 from _typeshed import Self
 from abc import ABC, abstractmethod
 from Hate_classification.EXCEPTIONS.exceptions import  CustomExcecptionError
@@ -89,8 +92,10 @@ class ModelTraining(ModelTrainingAbstract):
 
   def preprocess(self):
      model=self.modeltrain()
+<<<<<<< HEAD
      self.save_model()
      return model
+
 
   def modeltrain(self):
       model=self.Model
@@ -104,7 +109,14 @@ class ModelTraining(ModelTrainingAbstract):
       pass
 
 
+<<<<<<< HEAD
 
+=======
+#model training pipeline
+def model_training_pipeline(input_tensor):
+  model=ModelTraining(input_tensor=input_tensor).preprocess()
+  return model
+>>>>>>> origin/main
     
 
 

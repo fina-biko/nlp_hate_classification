@@ -68,7 +68,9 @@ def feature_engineering_pipeline(data:pd.DataFrame):
             
             log.info('finished embeddings successfully')
             print('finished embeddings successfully')
+
             return data
+
         else:
             print('The data returned from embeddings is not a pandas dataframe')
             log.error('The data returned from embeddings is not a pandas dataframe')
