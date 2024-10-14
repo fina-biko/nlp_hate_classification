@@ -215,9 +215,39 @@ Input: "8047,15,3080,12697,1196,427,37,28,5,142,0,..."
 Output: ["8047", "15", "3080", "12697", "1196", "427", ...].
 map(int, x.split(',')):
 
-The map() function applies the int function to each element of the list produced by x.split(','). This converts each string in the list into an integer. So the output would now be a map object that contains integers instead of strings:
+The map() function applies the int function to each element of the list produced by x.split(','). This converts each string in the list into an integer. So the output
+ would now be a map object that contains integers instead of strings:
 Output: [8047, 15, 3080, 12697, 1196, 427, ...].
 list(...):
 
 Finally, the list() function converts the map object into a regular Python list, making it easier to work with. 
 '''
+
+Alternative Method Using Environment Variables
+To avoid exposing your token in the notebook, you can set it as an environment variable. Here’s how:
+
+Set the Environment Variable:
+
+python
+Copy code
+import os
+os.environ['GITHUB_TOKEN'] = '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'
+Push Using the Environment Variable:
+
+Then use the variable in your push command:
+
+python
+Copy code
+!git push https://fina-biko:$GITHUB_TOKEN@github.com/fina-biko/nlp_hate_classification.
+
+
+
+
+
+
+
+
+
+
+
+
